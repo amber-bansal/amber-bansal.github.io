@@ -1,0 +1,262 @@
+/* Colors */
+:root {
+  --bg: #ffffff;
+  --text: #22252b;      /* ~15:1 on white */
+  --muted: #5b6070;     /* ~6.3:1 on white */
+  --accent: #1f3a68;    /* navy, ~11:1 on white */
+  --accent-soft: #eef2f8;
+  --rule: #e6e8ee;
+  --serif: "Lora", Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Header and navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+
+.site-name {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  position: relative;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.3rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: var(--accent);
+}
+
+nav a:hover::after,
+nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Hero */
+.hero {
+  padding-top: 7rem;
+  padding-bottom: 4rem;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2.75rem, 8vw, 4.75rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.hero-rule {
+  display: block;
+  width: 4rem;
+  height: 3px;
+  margin-top: 2rem;
+  background: var(--accent);
+}
+
+/* Sections: label column + content column on wider screens */
+section {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 1rem 3rem;
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 4.5rem;
+}
+
+h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.num {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+}
+
+.body {
+  max-width: 36rem;
+  padding-top: 1.55rem;
+}
+
+p {
+  margin: 0;
+}
+
+.lead {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+/* Interests as pills */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.4rem 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Phones and small tablets */
+@media (max-width: 700px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  nav ul {
+    gap: 0.25rem 1.25rem;
+  }
+
+  .hero {
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  section {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 0;
+    scroll-margin-top: 6rem;
+  }
+
+  .body {
+    padding-top: 0.25rem;
+  }
+
+  .lead {
+    font-size: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  nav a,
+  nav a::after {
+    transition: none;
+  }
+}
